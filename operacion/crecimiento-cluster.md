@@ -9,17 +9,22 @@ Mediante esta herramienta podemos incrementar el número de réplicas que querem
 ```json
 {"version":1, "partitions":[{"topic":"my-topic", "partition":0, "replicas":[1,2,3]}]}
 ```
+
 La herramienta *kafka-reassign-partitions.sh* nos permite generar este fichero de manera automática:
 
   1. Indicamos en un fichero JSON los topics que deseamos mover, creando un fichero *topics-move.json* :
+  
   ```json
   {"topics":[{"topic":"topic1"},{"topic":"topic2"}], "version":1}
   ```
   2. Una vez tenemos el fichero, utilizamos el comando indicando el identificador de los brokers donde queremos mover los topics.
+  
   ```
   bin/kafka-reassign-partitions.sh --zookeeper localhost:2181 --topics-to-move-json-file topics-move.json --broker-list "5,6" --generate
   ```
+  
   Este comando genera una salida como la que utilizamos en la sesión anteriormente, copiamos la salida y creamos un fichero *mover-replicas.json*.
+  
   ```json
   {"version":1, "partitions":[
         {"topic":"topic1", "partition":0, "replicas":[5,6]},
@@ -29,6 +34,7 @@ La herramienta *kafka-reassign-partitions.sh* nos permite generar este fichero d
   ]}
   ```
   3. Finalmente, tenemos que ejecutar el comando que ya conocemos para aplicar la nueva configuración.
+  
   ```
   bin/kafka-reassign-partitions.sh --zookeeper localhost:2181   --reassignment-json-file mover-replicas.json --execute
   ```

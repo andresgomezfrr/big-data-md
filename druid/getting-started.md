@@ -59,7 +59,7 @@ En primer lugar para poder acceder al servicio desde S3 desde Druid se utilizara
 3. Creamos una nueva Access Key.
 ![](images/iam2.png)
 
-4. Visializamos y descargamos las credenciales. Hay que tener en cuenta que no podremos volver a ver nuestro SecretKey desde la consola de AWS, por lo que hay que guardarla.
+4. Visualizamos y descargamos las credenciales. Hay que tener en cuenta que no podremos volver a ver nuestro SecretKey desde la consola de AWS, por lo que hay que guardarla.
 ![](images/iam3.png)
 
 Una vez ya tenemos nuestras credenciales vamos a crear un Bucket de S3, que utilizaremos como Deep Storage.

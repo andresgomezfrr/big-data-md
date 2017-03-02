@@ -94,14 +94,16 @@ druid-dist/conf/druid/_common/common.runtime.properties
 ```
 
 1. Cambiamos las extensiones `druid.extensions.loadList` que utilizaremos en nuestro cluster de Druid. Dejamos las extensiones por defecto, cambiando mysql por postgresql y añadimos la extension de kafka-indexing que usaremos más adelante.
-```properties
-druid.extensions.loadList=["druid-kafka-eight", "druid-s3-extensions", "druid-histogram", "druid-datasketches", "druid-lookups-cached-global", "postgresql-metadata-storage", "druid-kafka-indexing-service"]
-```
+
+  ```properties
+  druid.extensions.loadList=["druid-kafka-eight", "druid-s3-extensions", "druid-histogram", "druid-datasketches", "druid-lookups-cached-global", "postgresql-metadata-storage", "druid-kafka-indexing-service"]
+  ```
 
 2. Configuramos nuestro servidor de ZooKeeper.
-```
-druid.zk.service.host=localhost:2181
-```
+
+  ```
+  druid.zk.service.host=localhost:2181
+  ```
 
 3. Comentamos las propiedades de metadata.storage pertenecientes a derby y descomentamos la de postgresql.
 

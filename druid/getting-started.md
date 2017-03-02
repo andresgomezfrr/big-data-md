@@ -101,21 +101,23 @@ druid-dist/conf/druid/_common/common.runtime.properties
 
 2. Configuramos nuestro servidor de ZooKeeper.
 
-  ```
+  ```properties
   druid.zk.service.host=localhost:2181
   ```
 
 3. Comentamos las propiedades de metadata.storage pertenecientes a derby y descomentamos la de postgresql.
 
   Comentamos -->
-  ```
+
+  ```properties
   druid.metadata.storage.type=derby
   druid.metadata.storage.connector.connectURI=jdbc:derby://metadata.store.ip:1527/var/druid/metadata.db;create=true
   druid.metadata.storage.connector.host=metadata.store.ip
   druid.metadata.storage.connector.port=1527
   ```
   Configuramos -->
-  ```
+
+  ```properties
   druid.metadata.storage.type=postgresql
   druid.metadata.storage.connector.connectURI=jdbc:postgresql://localhost:5432/druid
   druid.metadata.storage.connector.user=druid
@@ -125,12 +127,14 @@ druid-dist/conf/druid/_common/common.runtime.properties
 4. Ahora vamos a configurar nuestro Deep Storage, para eso comentamos la parte al deep storage local y descomentamos la parte de S3.
 
   Comentamos -->
-  ```
+
+  ```properties
   druid.storage.type=local
   druid.storage.storageDirectory=var/druid/segments
   ```
   Configuramos -->
-  ```
+
+  ```properties
   druid.storage.type=s3
   druid.storage.bucket=my-druid-deep-storage
   druid.storage.baseKey=druid/segments
@@ -141,12 +145,14 @@ druid-dist/conf/druid/_common/common.runtime.properties
 5. Configuramos S3 como almacenamiento de los logs de las tareas de indexación:
 
   Comentamos -->
-  ```
-  #druid.indexer.logs.type=file
-  #druid.indexer.logs.directory=var/druid/indexing-logs
+
+  ```properties
+  druid.indexer.logs.type=file
+  druid.indexer.logs.directory=var/druid/indexing-logs
   ```
   Configuramos -->
-  ```
+
+  ```properties
   druid.indexer.logs.type=s3
   druid.indexer.logs.s3Bucket=my-druid-deep-storage
   druid.indexer.logs.s3Prefix=druid/indexing-logs
@@ -199,7 +205,7 @@ Ahora que ya que tenemos todo el sistema funcionando, vamos a crear una tarea de
 
 Creamos un fichero con este contenido llamado `kafka-index.json`.
 
-```
+```json
 {
   "type": "kafka",
   "dataSchema": {
@@ -296,7 +302,8 @@ root@ip-172-31-59-196:~# kafka/bin/kafka-console-producer.sh --broker-list local
 Finalmente podemos realizar una query a los datos indexados para comprobar su funcionamiento.
 
 Query:
-```
+
+```json
 {
   "queryType": "topN",
   "dataSource": "metrics-kafka",
@@ -327,7 +334,8 @@ curl -sX POST http://${BROKER_IP}:8082/druid/v2/?pretty=true -H 'content-type: a
 ```
 
 Resultado:
-```
+
+```json
 [
   {
     "timestamp" : "2017-03-02T11:15:35.000Z",

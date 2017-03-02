@@ -104,48 +104,51 @@ druid.zk.service.host=localhost:2181
 ```
 
 3. Comentamos las propiedades de metadata.storage pertenecientes a derby y descomentamos la de postgresql.
-Comentamos -->
-```
-druid.metadata.storage.type=derby
-druid.metadata.storage.connector.connectURI=jdbc:derby://metadata.store.ip:1527/var/druid/metadata.db;create=true
-druid.metadata.storage.connector.host=metadata.store.ip
-druid.metadata.storage.connector.port=1527
-```
-Configuramos -->
-```
-druid.metadata.storage.type=postgresql
-druid.metadata.storage.connector.connectURI=jdbc:postgresql://localhost:5432/druid
-druid.metadata.storage.connector.user=druid
-druid.metadata.storage.connector.password=diurd
-```
+
+  Comentamos -->
+  ```
+  druid.metadata.storage.type=derby
+  druid.metadata.storage.connector.connectURI=jdbc:derby://metadata.store.ip:1527/var/druid/metadata.db;create=true
+  druid.metadata.storage.connector.host=metadata.store.ip
+  druid.metadata.storage.connector.port=1527
+  ```
+  Configuramos -->
+  ```
+  druid.metadata.storage.type=postgresql
+  druid.metadata.storage.connector.connectURI=jdbc:postgresql://localhost:5432/druid
+  druid.metadata.storage.connector.user=druid
+  druid.metadata.storage.connector.password=diurd
+  ```
 
 4. Ahora vamos a configurar nuestro Deep Storage, para eso comentamos la parte al deep storage local y descomentamos la parte de S3.
-Comentamos -->
-```
-druid.storage.type=local
-druid.storage.storageDirectory=var/druid/segments
-```
-Configuramos -->
-```
-druid.storage.type=s3
-druid.storage.bucket=my-druid-deep-storage
-druid.storage.baseKey=druid/segments
-druid.s3.accessKey=AKIAIFEXIBU2R7BA----
-druid.s3.secretKey=yhQ7eCOjO15EuIFKnkeXOLyf-----
-```
+
+  Comentamos -->
+  ```
+  druid.storage.type=local
+  druid.storage.storageDirectory=var/druid/segments
+  ```
+  Configuramos -->
+  ```
+  druid.storage.type=s3
+  druid.storage.bucket=my-druid-deep-storage
+  druid.storage.baseKey=druid/segments
+  druid.s3.accessKey=AKIAIFEXIBU2R7BA----
+  druid.s3.secretKey=yhQ7eCOjO15EuIFKnkeXOLyf-----
+  ```
 
 5. Configuramos S3 como almacenamiento de los logs de las tareas de indexación:
-Comentamos -->
-```
-#druid.indexer.logs.type=file
-#druid.indexer.logs.directory=var/druid/indexing-logs
-```
-Configuramos -->
-```
-druid.indexer.logs.type=s3
-druid.indexer.logs.s3Bucket=my-druid-deep-storage
-druid.indexer.logs.s3Prefix=druid/indexing-logs
-```
+
+  Comentamos -->
+  ```
+  #druid.indexer.logs.type=file
+  #druid.indexer.logs.directory=var/druid/indexing-logs
+  ```
+  Configuramos -->
+  ```
+  druid.indexer.logs.type=s3
+  druid.indexer.logs.s3Bucket=my-druid-deep-storage
+  druid.indexer.logs.s3Prefix=druid/indexing-logs
+  ```
 
 Una vez configurado el fichero de `common.runtime.properties` podemos iniciar los servicios y dejar el resto de ficheros con la configuración por defecto.
 
@@ -355,3 +358,23 @@ http://${COORDINATOR_IP}:8081/
 y podemos veriricar en S3 AWS, que tenemos el segmento y los logs del las tareas de indexación.
 
 ![](images/segment.png)
+
+Tambien podemos verificar el metadata storage.
+
+1. Cambiamos de usuario a `druid`.
+
+  ```
+   su druid
+  ```
+
+2. Accedemos a postgresql.
+
+  ```
+  psql
+  ```
+
+3. Listamos los segmentos de la tabla correspondiente:
+
+  ```
+  SELECT * FROM druid_segments;
+  ```

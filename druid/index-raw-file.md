@@ -18,7 +18,7 @@ El fichero de S3 contiene una muestra de datos sobre analitica de red, por lo qu
 
 **index-s3.json**:
 
-```
+```json
 {
   "type" : "index_hadoop",
   "spec" : {
@@ -152,7 +152,7 @@ curl -sX POST http://${BROKER_IP}:8082/druid/v2/?pretty=true -H 'content-type: a
 
 **query:**
 
-```
+```json
 {
   "queryType": "topN",
   "dataSource": "network-data",
@@ -175,7 +175,7 @@ curl -sX POST http://${BROKER_IP}:8082/druid/v2/?pretty=true -H 'content-type: a
 
 **resultado:**
 
-```
+```json
 [
   {
     "timestamp" : "2017-02-28T12:31:00.000Z",

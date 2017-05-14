@@ -31,10 +31,10 @@ Ya tenemos un servidor de ZooKeeper disponible y podemos empezar a descargar y c
 
 1. Ahora vamos a descargar la distribución de Kafka y la descomprimimos.
 ```
-wget http://apache.rediris.es/kafka/0.10.0.1/kafka_2.11-0.10.0.1.tgz
+wget http://apache.rediris.es/kafka/0.10.2.1/kafka_2.11-0.10.2.1.tgz
 ```
 ```
-tar -xvf kafka_2.11-0.10.0.1.tgz ; cd kafka_2.11-0.10.0.1
+tar -xvf kafka_2.11-0.10.2.1.tgz ; cd kafka_2.11-0.10.2.1
 ```
 
 2. Para ejecutar Kafka utilizaremos uno de los scripts que proporciona:

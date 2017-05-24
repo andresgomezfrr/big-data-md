@@ -61,4 +61,4 @@ Si tenemos otro nodo que queramos que funcione como nodemanager tenemos que llev
 
 Podemos verificar si el cluster esta funcionando correctamente, para ello accedemos a la dirección IP del resource manager en el puerto 36774por defecto.
 
-`http://${RESOURCE_MANAGER_ADDRESS}:36774/cluster`
+`http://${RESOURCE_MANAGER_ADDRESS}:8088/cluster`

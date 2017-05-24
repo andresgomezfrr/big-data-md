@@ -48,17 +48,17 @@ cp ./etc/hadoop/yarn-site.xml conf
 Una vez tenemos el fichero de configuración preparado podemos arrancar el resourcemanager:
 
 ```
-sbin/yarn-daemon.sh --config etc/hadoop/ start resourcemanager
+sbin/yarn-daemon.sh --config $HADOOP_CONF_DIR start resourcemanager
 ```
 
 Tambien podemos decidir levantar un nodemanager en el mismo nodo que el resourcemanager, para ello podemos ejecutar:
 
 ```
-sbin/yarn-daemon.sh --config etc/hadoop/ start nodemanager
+sbin/yarn-daemon.sh --config $HADOOP_CONF_DIR start nodemanager
 ```
 
 Si tenemos otro nodo que queramos que funcione como nodemanager tenemos que llevarnos la misma configuración que hemos aplicado en el resourcemanager al nuevo nodo que actuara de nodemanager, dejando la dirección IP del resourcemanager en el fichero de configuración.
 
-Podemos verificar si el cluster esta funcionando correctamente, para ello accedemos a la dirección IP del resource manager en el puerto 36774por defecto.
+Podemos verificar si el cluster esta funcionando correctamente, para ello accedemos a la dirección IP del resource manager en el puerto 8088 por defecto.
 
 `http://${RESOURCE_MANAGER_ADDRESS}:8088/cluster`

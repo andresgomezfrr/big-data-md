@@ -40,7 +40,7 @@ Estando dentro de la carpeta de la distribución de hadoop ejecutamos los siguie
 
 ```
 export HADOOP_YARN_HOME=$(pwd)
-mkdir con
+mkdir conf
 export HADOOP_CONF_DIR=$HADOOP_YARN_HOME/conf
 cp ./etc/hadoop/yarn-site.xml conf
 ```

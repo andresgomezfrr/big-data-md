@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>kafka-streams</artifactId>
+        <groupId>com.kafka.examples</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>docker</artifactId>
+    <description>Docker packaging manager</description>
+
+    <properties>
+        <docker.registry>my-docker-registry</docker.registry>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.4.13</version>
+
+                <configuration>
+                    <useConfigFile>true</useConfigFile>
+                    <forceTags>true</forceTags>
+
+                    <imageName>${project.parent.artifactId}</imageName>
+
+                    <imageTags>
+                        <imageTag>${project.version}</imageTag>
+                        <imageTag>latest</imageTag>
+                    </imageTags>
+
+                    <dockerDirectory>${project.basedir}/build</dockerDirectory>
+
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.basedir}/../service/target</directory>
+                            <include>${project.parent.artifactId}-selfcontained.jar</include>
+                        </resource>
+                    </resources>
+
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <id>build-image</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+
+                    <execution>
+                        <id>tag-image</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>tag</goal>
+                        </goals>
+                        <configuration>
+                            <image>${project.parent.artifactId}:${project.version}</image>
+                            <newName>${docker.registry}/${project.parent.artifactId}:${project.version}</newName>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>tag-latest-image</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>tag</goal>
+                        </goals>
+                        <configuration>
+                            <image>${project.parent.artifactId}:latest</image>
+                            <newName>${docker.registry}/${project.parent.artifactId}:latest</newName>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>push-image</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>push</goal>
+                        </goals>
+                        <configuration>
+                            <imageName>${docker.registry}/${project.parent.artifactId}:${project.version}</imageName>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>push-latest-image</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>push</goal>
+                        </goals>
+                        <configuration>
+                            <imageName>${docker.registry}/${project.parent.artifactId}:latest</imageName>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

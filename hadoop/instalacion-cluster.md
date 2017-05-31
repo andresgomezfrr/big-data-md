@@ -1,4 +1,4 @@
-# Hadoop YARN Cluster
+# Hadoop
 
 En la instalación vamos a usar una ubuntu-server 16.04. Antes de nada vamos a actualizar nuestra distribución e instalar java.
 
@@ -22,7 +22,9 @@ Una vez tengamos la descarga descomprimimos el tar.gz y accedemos a la carpeta d
 tar -xvf hadoop-2.8.0.tar.gz; cd hadoop-2.8.0
 ```
 
-## ResourceManager
+## Hadoop YARN Cluster
+
+### ResourceManager
 
 En primer lugar vamos a configurar los ficheros pertenecientes al nodo que actuara de ResourceManager. Para ello vamos a editar el fichero que se enceuntra en `etc/hadoop/yarn-site.xml` y escribimos el siguiente contenido que es la configuración minima necesaria para levantar el ResourceManager con la configuración por defecto.
 
@@ -62,3 +64,63 @@ Si tenemos otro nodo que queramos que funcione como nodemanager tenemos que llev
 Podemos verificar si el cluster esta funcionando correctamente, para ello accedemos a la dirección IP del resource manager en el puerto 8088 por defecto.
 
 `http://${RESOURCE_MANAGER_ADDRESS}:8088/cluster`
+
+## Hadoop HDFS Cluster
+
+**Nota: La configuración de HDFS no esta preparada para funcionar en multinodo.**
+
+Estando dentro de la carpeta de la distribución de hadoop ejecutamos los siguientes comandos en todos los nodos que formen parte del HDFS.
+
+```
+export HADOOP_YARN_HOME=$(pwd)
+mkdir conf
+cp ./etc/hadoop/* conf
+```
+
+Añadimos la configuración al fichero `core-site.xml`:
+
+```xml
+<configuration>
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://localhost:9000</value>
+    </property>
+</configuration>
+```
+
+y la siguiente al fichero `hdfs-site.xml`:
+
+```xml
+<configuration>
+    <property>
+        <name>dfs.replication</name>
+        <value>1</value>
+    </property>
+</configuration>
+```
+
+En esta ocasiones tenemos que añadir las claves de los nodos para poder ejecutar el datanode, en ese caso:
+
+```
+ ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+```
+
+Ahora ya podemos preparar HDFS en primer lugar formateamos/inicializamos el namenode:
+
+```
+bin/hdfs namenode -format test
+```
+
+Arrancamos el namenode:
+
+```
+sbin/hadoop-daemon.sh --config $HADOOP_CONF_DIR --script hdfs start namenode
+```
+
+Arrancamos el datanode:
+
+```
+sbin/hadoop-daemons.sh --config $HADOOP_CONF_DIR --script hdfs start datanode
+```
+

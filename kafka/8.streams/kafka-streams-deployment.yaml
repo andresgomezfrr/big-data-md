@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: kafka-streams
+  name: kafka-streams
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: kafka-streams
+    spec:
+      containers:
+      - name: kafka-streams
+        image: gcr.io/wizzie-registry/kafka-streams:1.0-SNAPSHOT
+        env:
+          - name: APP_ID
+            value: "my-kubernetes-id"
+          - name: KAFKA_BOOTSTRAPER
+            value: kafka-svc:9092
+          - name: MAIN_CLASS
+            value: com.kafka.streams.api.dsl.enricher.Application
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "250m"

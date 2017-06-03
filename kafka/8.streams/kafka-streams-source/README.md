@@ -20,3 +20,6 @@ Un ejemplo de ejecucción podría ser el siguiente:
 ```
 docker run -it -e MAIN_CLASS=com.kafka.streams.api.dsl.enricher.Application -e APP_ID=enrich -e KAFKA_BOOTSTRAPER=192.168.1.103:9092 kafka-streams:latest
 ```
+
+
+Docker image: `gcr.io/wizzie-registry/kafka-streams:1.0-SNAPSHOT`

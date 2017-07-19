@@ -80,11 +80,11 @@ Con esto ya tenemos configurado nuestro Deep Storage para utilizarlo desde Druid
 En primer lugar descargamos la última versión estable de Druid y la descomprimimos.
 
 ```
-wget http://static.druid.io/artifacts/releases/druid-0.9.2-bin.tar.gz
+wget http://static.druid.io/artifacts/releases/druid-0.10.0-bin.tar.gz
 ```
 
 ```
-tar -xvf druid-0.9.2-bin.tar.gz
+tar -xvf druid-0.10.0-bin.tar.gz
 ```
 
 Una vez ya tenemos la distribución, lo primero que vamos a hacer es configurar Druid para que use nuestro ZooKeeper y nuestro Deep Storage y Metadata Storage. Para ello editamos el fichero:

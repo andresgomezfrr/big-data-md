@@ -13,13 +13,13 @@ export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/
 En primer lugar nos descargamos la última versión estable de Apache Hadoop 2.8.0
 
 ```
-wget http://apache.rediris.es/hadoop/common/hadoop-2.8.0/hadoop-2.8.0.tar.gz
+wget http://apache.rediris.es/hadoop/common/hadoop-2.8.1/hadoop-2.8.1.tar.gz
 ```
 
 Una vez tengamos la descarga descomprimimos el tar.gz y accedemos a la carpeta de la distribución:
 
 ```
-tar -xvf hadoop-2.8.0.tar.gz; cd hadoop-2.8.0
+tar -xvf hadoop-2.8.1.tar.gz; cd hadoop-2.8.1
 ```
 
 ## Hadoop YARN Cluster

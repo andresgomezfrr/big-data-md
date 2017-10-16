@@ -83,7 +83,7 @@ Añadimos la configuración al fichero `core-site.xml`:
 <configuration>
     <property>
         <name>fs.defaultFS</name>
-        <value>hdfs://localhost:9000</value>
+        <value>hdfs://${IP_ADDRESS}:5050</value>
     </property>
 </configuration>
 ```

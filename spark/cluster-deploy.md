@@ -31,7 +31,7 @@ Cuando lo tengamos veremos una salida de log como la siguiente:
 
 Y podremos acceder a la Spark UI: http://192.168.1.106:8080
 
-![spark-ui](https://github.com/andresgomezfrr/big-data-md/spark/imgs/spark-ui.png)
+![spark-ui](https://github.com/andresgomezfrr/big-data-md/blob/master/spark/imgs/spark-ui.png)
 
 ### Spark Workers
 
@@ -43,7 +43,7 @@ Ahora vamos a ejecutar los workers, que son los que a√±aden recursos al cluster:
 
 Tenemos que indicar la URL del master, en mi caso: `spark://andresgomezfrr.local:7077`. Si ahora volvemos a visitar la web de Spark, veremos que tenemos registrado un worker.
 
-![spark-ui-worker](https://github.com/andresgomezfrr/big-data-md/spark/imgs/spark-ui-worker.png)
+![spark-ui-worker](https://github.com/andresgomezfrr/blob/master/big-data-md/spark/imgs/spark-ui-worker.png)
 
 ### Example App
 
@@ -59,4 +59,4 @@ Ya que tenemos nuestro cluster operativo podemos probar a ejecutar una aplicaci√
 
 Y podemos ver que esta operativa en la Spark UI.
 
-![spark-ui-app](https://github.com/andresgomezfrr/big-data-md/spark/imgs/spark-ui-app.png)
+![spark-ui-app](https://github.com/andresgomezfrr/big-data-md/blob/master/spark/imgs/spark-ui-app.png)

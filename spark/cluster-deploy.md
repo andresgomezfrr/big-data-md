@@ -6,7 +6,7 @@ Para comenzar vamos a descargar y descomprimir la distribución de spark:
 wget https://d3kbcqa49mib13.cloudfront.net/spark-2.2.0-bin-hadoop2.7.tgz; tar -xvf spark-2.2.0-bin-hadoop2.7.tgz; cd spark-2.2.0-bin-hadoop2.7
 ```
 
-![cluster-overview](https://github.com/andresgomezfrr/big-data-md/spark/imgs/cluster-overview.png)
+![cluster-overview](https://github.com/andresgomezfrr/big-data-md/blob/master/spark/imgs/cluster-overview.png)
 
 ### Spark Master & Spark UI
 
@@ -43,7 +43,7 @@ Ahora vamos a ejecutar los workers, que son los que añaden recursos al cluster:
 
 Tenemos que indicar la URL del master, en mi caso: `spark://andresgomezfrr.local:7077`. Si ahora volvemos a visitar la web de Spark, veremos que tenemos registrado un worker.
 
-![spark-ui-worker](https://github.com/andresgomezfrr/blob/master/big-data-md/spark/imgs/spark-ui-worker.png)
+![spark-ui-worker](https://github.com/andresgomezfrr/big-data-md/blob/master/spark/imgs/spark-ui-worker.png)
 
 ### Example App
 

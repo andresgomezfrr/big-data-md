@@ -33,7 +33,7 @@ En primer lugar vamos a configurar los ficheros pertenecientes al nodo que actua
 <!-- Site specific YARN configuration properties -->
   <property>
     <name>yarn.resourcemanager.hostname</name>
-    <value>172.31.51.168</value>
+    <value>${IP_ADDRESS}</value>
   </property>
 </configuration>
 ```
